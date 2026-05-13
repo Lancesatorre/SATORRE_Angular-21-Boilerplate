@@ -2,13 +2,17 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": "1f9a7c07-ce99-47a1-bcfa-7d0f822969cd"
   },
   "newProjectRoot": "projects",
   "projects": {
-    "Angula-Auth-Boilerplate": {
+    "angular-21-boilerplate": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {"@schematics/angular:component": {
+          "style": "less"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -18,6 +22,7 @@
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "less",
             "assets": [
               {
                 "glob": "**/*",
@@ -26,15 +31,7 @@
             ],
             "styles": [
               "src/styles.css"
-            ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "security": {
-              "allowedHosts": []
-            },
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            ]
           },
           "configurations": {
             "production": {
@@ -50,9 +47,16 @@
                   "maximumError": "8kB"
                 }
               ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "outputHashing": "all"
             },
             "development": {
+              "namedChunks": true,
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
@@ -64,10 +68,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Angula-Auth-Boilerplate:build:production"
+              "buildTarget": "angular-21-boilerplate:build:production"
             },
             "development": {
-              "buildTarget": "Angula-Auth-Boilerplate:build:development"
+              "buildTarget": "angular-21-boilerplate:build:development"
             }
           },
           "defaultConfiguration": "development"
