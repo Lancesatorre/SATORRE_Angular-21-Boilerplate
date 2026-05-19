@@ -1,31 +1,40 @@
-<div class="card m-3">
-    <h3 class="card-header">Accounts</h3>
+<div class="card">
+    <h3 class="card-header">Manage Accounts</h3>
     <div class="card-body">
-        <a routerLink="add" class="btn btn-success mb-2">Create Account</a>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th style="width:30%">Name</th>
-                    <th style="width:30%">Email</th>
-                    <th style="width:30%">Role</th>
-                    <th style="width:10%"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let account of accounts">
-                    <td class="align-middle">{{account.title}} {{account.firstName}} {{account.lastName}}</td>
-                    <td class="align-middle">{{account.email}}</td>
-                    <td class="align-middle">{{account.role}}</td>
-                    <td style="white-space: nowrap">
-                        <a routerLink="edit/{{account.id}}" class="btn btn-primary me-1">Edit</a>
-                        <button (click)="deleteAccount(account.id)" class="btn btn-danger"
-                            [disabled]="account.isDeleting">
-                            <span *ngIf="account.isDeleting" class="spinner-border spinner-border-sm me-1"></span>
-                            Delete
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div style="margin-bottom: 1.5rem;">
+            <a routerLink="add" class="btn btn-success">+ Create Account</a>
+        </div>
+        <div style="overflow-x: auto;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th style="text-align: right;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let account of accounts">
+                        <td class="align-middle">{{account.title}} {{account.firstName}} {{account.lastName}}</td>
+                        <td class="align-middle">{{account.email}}</td>
+                        <td class="align-middle"><span
+                                style="background-color: var(--gray-200); padding: 0.25rem 0.75rem; border-radius: 4px;">{{account.role}}</span>
+                        </td>
+                        <td style="text-align: right; white-space: nowrap;">
+                            <a routerLink="edit/{{account.id}}" class="btn btn-primary btn-sm me-2">Edit</a>
+                            <button (click)="deleteAccount(account.id)" class="btn btn-danger btn-sm"
+                                [disabled]="account.isDeleting">
+                                <span *ngIf="account.isDeleting" class="spinner-border spinner-border-sm me-1"></span>
+                                <span *ngIf="!account.isDeleting">Delete</span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="!accounts || accounts.length === 0">
+                        <td colspan="4" class="text-center text-muted" style="padding: 2rem;">No accounts found</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

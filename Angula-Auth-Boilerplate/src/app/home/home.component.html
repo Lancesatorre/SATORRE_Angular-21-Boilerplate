@@ -1,6 +1,17 @@
-<div class="container mt-4">
-    <div class="alert alert-info">
-        <h2>Welcome {{ account?.firstName }}!</h2>
-        <p>You are logged in with Angular JWT authentication.</p>
+<div class="container">
+    <div style="max-width: 800px; margin: 2rem auto;">
+        <div class="alert alert-info">
+            <div style="text-align: center;">
+                <h2 style="margin-bottom: 0.5rem;">Welcome, {{ account?.firstName }}!</h2>
+                <p style="margin: 0;">You are logged in with Angular JWT authentication.</p>
+            </div>
+        </div>
+        <div class="card" style="margin-top: 2rem;">
+            <div class="card-body" style="text-align: center;">
+                <h3 style="margin-bottom: 1rem;">Home</h3>
+                <p>This is a secured page that can only be accessed after login.</p>
+                <p style="margin-top: 1rem;">Use the navigation to explore other sections of the application.</p>
+            </div>
+        </div>
     </div>
 </div>

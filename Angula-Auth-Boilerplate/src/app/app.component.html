@@ -1,11 +1,16 @@
 <!-- main nav -->
-<nav *ngIf="account" class="navbar navbar-expand navbar-dark bg-dark">
+<nav *ngIf="account" class="navbar">
     <div class="container">
-        <div class="navbar-nav">
-            <a class="nav-item nav-link" routerLink="/">Home</a>
-            <a class="nav-item nav-link" routerLink="/profile">Profile</a>
-            <a *ngIf="account.role === 'Admin'" class="nav-item nav-link" routerLink="/admin">Admin</a>
-            <button class="nav-item nav-link btn btn-link" (click)="logout()">Logout</button>
+        <div class="nav-flex">
+            <div class="navbar-brand">
+                <strong>Angular Auth</strong>
+            </div>
+            <div class="navbar-nav">
+                <a routerLink="/">Home</a>
+                <a routerLink="/profile">Profile</a>
+                <a *ngIf="account.role === 'Admin'" routerLink="/admin">Admin</a>
+                <button class="btn btn-link logout-btn" (click)="logout()">Logout</button>
+            </div>
         </div>
     </div>
 </nav>
@@ -17,4 +22,6 @@
 <alert></alert>
 
 <!-- main outlet -->
-<router-outlet></router-outlet>
+<div class="main-content">
+    <router-outlet></router-outlet>
+</div>

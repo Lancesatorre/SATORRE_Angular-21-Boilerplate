@@ -1,8 +1,9 @@
 <div *ngIf="alerts.length" class="container">
-  <div class="m-3">
-    <div *ngFor="let alert of alerts" class="{{cssClasses(alert)}}">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 1rem;">
+    <div *ngFor="let alert of alerts" class="{{cssClasses(alert)}}"
+      style="display: flex; justify-content: space-between; align-items: flex-start;">
       <span [innerHTML]="alert.message"></span>
-      <button class="btn-close" (click)="removeAlert(alert)"></button>
+      <button class="btn-close" (click)="removeAlert(alert)" style="margin-left: 1rem; flex-shrink: 0;"></button>
     </div>
   </div>
 </div>

@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { fakeBackendProvider } from './_helpers/fake-backend';
+import { environment } from '@environments/environment';
 import { AppRoutingModule } from './app-routing.module';         // ← direct file
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
@@ -29,7 +30,7 @@ import { HomeComponent } from './home/home.component';
     { provide: APP_INITIALIZER, useFactory: appInitializer, multi: true, deps: [AccountService] },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    fakeBackendProvider
+    ...(environment.useFakeBackend ? [fakeBackendProvider] : [])
   ],
   bootstrap: [AppComponent]
 })

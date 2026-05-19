@@ -1,9 +1,36 @@
-<div class="card m-3">
+<div class="card">
     <h3 class="card-header">My Profile</h3>
     <div class="card-body">
-        <p><strong>Name:</strong> {{ account?.title }} {{ account?.firstName }} {{ account?.lastName }}</p>
-        <p><strong>Email:</strong> {{ account?.email }}</p>
-        <p><strong>Role:</strong> {{ account?.role }}</p>
-        <a routerLink="update" class="btn btn-primary">Update Profile</a>
+        <div style="display: grid; gap: 1.5rem;">
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid var(--gray-200);">
+                <div>
+                    <label style="font-size: 0.875rem; color: var(--gray-500); text-transform: uppercase;">Full
+                        Name</label>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 1.1rem;">{{ account?.title }} {{ account?.firstName }} {{
+                        account?.lastName }}</p>
+                </div>
+            </div>
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid var(--gray-200);">
+                <div>
+                    <label style="font-size: 0.875rem; color: var(--gray-500); text-transform: uppercase;">Email</label>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 1.1rem;">{{ account?.email }}</p>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem;">
+                <div>
+                    <label style="font-size: 0.875rem; color: var(--gray-500); text-transform: uppercase;">Role</label>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 1.1rem;">
+                        <span
+                            style="background-color: var(--primary-light); color: white; padding: 0.25rem 0.75rem; border-radius: 4px;">{{
+                            account?.role }}</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 2rem;">
+            <a routerLink="update" class="btn btn-primary">Update Profile</a>
+        </div>
     </div>
 </div>
