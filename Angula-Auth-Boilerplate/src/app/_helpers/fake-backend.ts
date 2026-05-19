@@ -92,7 +92,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 account.refreshTokens = account.refreshTokens.filter((x: any) => x !== refreshToken);
                 localStorage.setItem(accountsKey, JSON.stringify(accounts));
             }
-            return ok();
+            return ok({
+                verificationToken: account.verificationToken,
+                verificationUrl: `${location.origin}/account/verify-email?token=${account.verificationToken}`
+            });
         }
 
         function register() {

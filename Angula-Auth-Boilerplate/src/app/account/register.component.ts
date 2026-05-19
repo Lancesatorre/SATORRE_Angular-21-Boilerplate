@@ -6,6 +6,7 @@ import { first } from 'rxjs/operators';
 import { AccountService } from '../_services/account.service';
 import { AlertService } from '../_services/alert.service';
 import { MustMatch } from '../_helpers/must-match.validator';
+import { environment } from '@environments/environment';
 
 @Component({ templateUrl: 'register.component.html', standalone: false })
 export class RegisterComponent implements OnInit {
@@ -50,8 +51,18 @@ export class RegisterComponent implements OnInit {
         this.accountService.register(this.form.value)
             .pipe(first())
             .subscribe({
-                next: () => {
-                    this.alertService.success('Registration successful, please check your email for verification instructions', { keepAfterRouteChange: true });
+                next: (response: any) => {
+                    if (environment.useFakeBackend && response?.verificationUrl) {
+                        this.alertService.success(
+                            `Registration successful. Verify here: <a href="${response.verificationUrl}">${response.verificationUrl}</a>`,
+                            { keepAfterRouteChange: true, autoClose: false }
+                        );
+                    } else {
+                        this.alertService.success(
+                            'Registration successful, please check your email for verification instructions',
+                            { keepAfterRouteChange: true }
+                        );
+                    }
                     this.router.navigate(['../login'], { relativeTo: this.route });
                 },
                 error: (error: any) => {
