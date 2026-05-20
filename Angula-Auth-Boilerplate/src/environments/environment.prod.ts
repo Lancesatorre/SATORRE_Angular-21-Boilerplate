@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://deployment-backendintprog-production.up.railway.app',
+    apiUrl: 'https://deploymentfinalproject.onrender.com',
     useFakeBackend: false
 };
 
